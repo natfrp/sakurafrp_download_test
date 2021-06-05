@@ -1,8 +1,8 @@
 <?php
 include('cli_base.php');
 
-define('FRPC_VERSION', '0.36.1-sakura-1');
-define('LAUNCHER_VERSION', '2.0.3.0');
+define('FRPC_VERSION', '0.37.0-sakura-1');
+define('LAUNCHER_VERSION', '2.0.4.0');
 
 define('HASH_FILE', 'hash.json');
 define('DOWNLOAD_FILE', 'downloads.json');
@@ -22,6 +22,7 @@ $_FRPC_FILES = array(
     'frpc_freebsd_amd64',
     'frpc_linux_386',
     'frpc_linux_amd64',
+    'frpc_linux_arm_garbage',
     'frpc_linux_armv6',
     'frpc_linux_armv7',
     'frpc_linux_arm64',
