@@ -23,7 +23,6 @@ $_FRPC_FILES = array(
     'frpc_linux_386',
     'frpc_linux_amd64',
     'frpc_linux_arm_garbage',
-    'frpc_linux_armv6',
     'frpc_linux_armv7',
     'frpc_linux_arm64',
     'frpc_linux_mips',
