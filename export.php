@@ -23,7 +23,6 @@ function exportDir($path)
 if (isset($argv[1])) {
     exportDir($argv[1]);
 } else {
-    exportDir('D:/Code/CS/SakuraLauncher/_publish/sign');
     exportDir('D:/Code/CS/SakuraLauncher/_publish');
     exportDir('D:/Code/Golang/frp/release');
 }

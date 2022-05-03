@@ -1,13 +1,13 @@
 <?php
 include('cli_base.php');
 
-define('FRPC_VERSION', '0.37.0-sakura-1');
-define('LAUNCHER_VERSION', '2.0.4.0');
+define('FRPC_VERSION', '0.42.0-sakura-1');
+define('LAUNCHER_VERSION', '2.0.4.3');
 
 define('HASH_FILE', 'hash.json');
 define('DOWNLOAD_FILE', 'downloads.json');
 
-define('DOWNLOAD_BASE', 'https://azure.globalslb.net/frp/');
+define('DOWNLOAD_BASE', 'https://nyat-static.globalslb.net/natfrp/client/');
 
 $_LAUNCHER_FILES = array(
     'SakuraLauncher.exe',
@@ -84,12 +84,14 @@ function test_file($file)
 
     log_I('Validating ' . $version . '/' . $file);
 
-    $test = md5(file_get_contents(DOWNLOAD_BASE . $version . '/' . $file . '?dl_test=' . time()));
+    $url = DOWNLOAD_BASE . $version . '/' . $file;
+    $test = md5(file_get_contents($url . '?dl_test=' . time()));
     if ($test != $hash) {
         log_E(' Mismatch! Actual [' . $hash . '], Except [' . $test . ']');
     } else {
         $d_ref['hash'] = strtoupper($hash);
         $d_ref['size'] = $hash_data[$file]['size'];
+        $d_ref['url_real'] = $url;
         unset($hash_data[$file]);
         save();
     }
