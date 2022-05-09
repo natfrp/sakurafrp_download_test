@@ -1,9 +1,6 @@
 <?php
 include('cli_base.php');
 
-define('FRPC_VERSION', '0.42.0-sakura-1');
-define('LAUNCHER_VERSION', '2.0.4.3');
-
 define('HASH_FILE', 'hash.json');
 define('DOWNLOAD_FILE', 'downloads.json');
 
@@ -99,8 +96,23 @@ function test_file($file)
     sleep(2);
 }
 
-$version = LAUNCHER_VERSION;
+if (!preg_match('/public const string Version = "(.+?)";/', file_get_contents('../SakuraLauncher/SakuraLibrary/Consts.cs'), $matches)) {
+    log_E('Unable to read launcher version');
+    die();
+}
+$launcher_version = trim($matches[1]);
+
+if (!preg_match('/var version string = "(.+?)"/', file_get_contents('../frp/pkg/util/version/version.go'), $matches)) {
+    log_E('Unable to read frp version');
+    die();
+}
+$frp_version = trim($matches[1]);
+
+log_I('[VERSION] SakuraLauncher: ' . $launcher_version);
+log_I('[VERSION] frpc: ' . $frp_version);
+
+$version = $launcher_version;
 array_map('test_file', $_LAUNCHER_FILES);
 
-$version = FRPC_VERSION;
+$version = $frp_version;
 array_map('test_file', $_FRPC_FILES);
